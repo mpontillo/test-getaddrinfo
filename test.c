@@ -12,8 +12,8 @@ int main(int argc, char* argv[]) {
         printf("Trying to resolve: %s\n", argv[i]);
         error = getaddrinfo(argv[i], NULL, NULL, &results);
         if(error) {
-            printf("    Error: %d\n", error);
-            perror("    getaddrinfo");
+            perror("    getaddrinfo errno");
+            printf("    getaddrinfo() return value: %d (%s)\n", error, gai_strerror(error));
             continue;
         }
         for(result = results ; result != NULL ; result = result->ai_next) {
